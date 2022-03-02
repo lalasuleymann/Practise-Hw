@@ -1,0 +1,36 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@Model.Name</h4>
+                @if (Model.IsMain)
+                {
+                    <p>Children: </p>
+                    <ul>
+                        @foreach (var item in Model.Children)
+                       {
+                           <li>@item.Name</li>
+                       }
+                    </ul>
+                }
+                else
+                {
+                    <p>Parent: @Model.Parent.Name</p>
+                }
+                <p class="text-danger"> Sure to Delete?</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <form method="post" class="forms-sample">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    <a class="btn btn-light" asp-action="Index"> Cancel</a>
+</div>
